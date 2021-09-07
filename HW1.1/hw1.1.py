@@ -170,9 +170,12 @@ class Data:
    
     def plot_prediction(self):
         x_train, x_valid, x_test, y_train, y_valid, y_test = self.partition_lineardata()
-        y_pred = self.model_linear(x_train, self.optimize(2))
-        y_pred1 = self.model_linear(x_valid, self.optimize(2))
-        y_pred2 = self.model_linear(x_test, self.optimize(2))
+        y_pred = x_train*7.8579 + 10.4873
+        y_pred1 = x_valid*7.8579 + 10.4873
+        y_pred2 = x_test*7.8579 + 10.4873
+#        y_pred = self.model_linear(x_train, self.optimize(2))
+ #       y_pred1 = self.model_linear(x_valid, self.optimize(2))
+  #      y_pred2 = self.model_linear(x_test, self.optimize(2))
 
         fig, ax = plt.subplots()
         ax.plot(y_pred, y_train, 'o', label='Training Set')
