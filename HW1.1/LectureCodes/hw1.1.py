@@ -67,10 +67,13 @@ class Data:
         y = x*p[0] + p[1]
         return y
     
+    def sigmoid(self, z):
+        return 1/(1+np.exp(-z))
+    
     def model_logistic(self, x,p):
         #define logistic regression equation
         y = p[0]+p[1]*(1.0/(1.0 + np.exp(-(x-p[2])/(p[3]+0.00001))))
-        return y       
+        return y     
 
     def loss_linear(self, p):
         #calculate mse for linear regression 
@@ -84,10 +87,13 @@ class Data:
     def loss_log(self, p):
         #calculate mse for logistic regression 
         x_train, x_valid, x_test, y_train, y_valid, y_test = self.partition_data()
-        y_pred = self.model_logistic(x_train, p)
-        total = y_train - y_pred
-        MSE = np.sqrt(np.sum(np.power(total, 2)))/y_train.shape[0]
-        loss = MSE
+        #y_pred = self.model_logistic(x_train, p)
+        #total = y_train - y_pred
+        #MSE = np.sqrt(np.sum(np.power(total, 2)))/y_train.shape[0]
+        #loss = MSE
+        left = np.multiply(-y_train, np.log(self.model_logistic(x_train, p)))
+        right = np.multiply(1-y_train, np.log(1-self.model_logistic(x_train, p)))
+        loss = np.sum(left - right) / len(x_train)
         return loss
 
     def loss_logistic(self, p):
@@ -132,6 +138,7 @@ class Data:
         plt.show()
         
     def plot_data(self):
+        #plotting the result with x value age, y value weight in logistic regression
         x_train, x_valid, x_test, y_train, y_valid, y_test = self.partition_data()
         fig, ax = plt.subplots()
         ax.plot(x_train, y_train, 'o', label='Training Set')
@@ -146,6 +153,7 @@ class Data:
         plt.show()
         
     def plot_log(self):
+        #plotting the result with x value weight and y value is_adult
         x_train, x_valid, x_test, y_train, y_valid, y_test = self.partition_logdata()
         fig, ax = plt.subplots()
         ax.plot(x_train, y_train, 'o', label='Training Set')
