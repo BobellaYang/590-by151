@@ -129,7 +129,7 @@ class Data:
         ax.plot(x_valid, y_valid, 'o', label='Validation Set')
         ax.plot(x_test, y_test, 'o', label='Testing Set')
         #the optimal value I got was below, therefore, I put the value down
-        ax.plot(x_train, 6.8579*x_train + 20.4873, label="Model")
+        ax.plot(x_train, 7.8579*x_train + 10.4873, label="Model")
         ax.legend()
         FS=18   #FONT SIZE
         plt.xlabel('x', fontsize=FS)
