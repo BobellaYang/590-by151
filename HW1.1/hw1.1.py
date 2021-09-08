@@ -63,7 +63,7 @@ class Data:
         #the optimal value I got was below, therefore, I put the value down
         y_pred = np.dot(xn, p[0]) + p[1]
         ax.plot(x_train, y_pred*np.std(y_train) + np.mean(y_train), label="Model")
-        a = ax.legend()
+        ax.legend()
         FS=18   #FONT SIZE
         plt.xlabel('x', fontsize=FS)
         plt.ylabel('y', fontsize=FS)
@@ -130,7 +130,7 @@ class Data:
         #the optimal value I got was below, therefore, I put the value down
         y_pred = p[3] + p[0] / (1 + np.e**((p[2] - xn)/p[1]))
         ax.plot(x_train, y_pred*np.std(y_train) + np.mean(y_train), label="Model")
-        a = ax.legend()
+        ax.legend()
         FS=18   #FONT SIZE
         plt.xlabel('x', fontsize=FS)
         plt.ylabel('y', fontsize=FS)
@@ -152,7 +152,6 @@ class Data:
     def loss_logistic(self, p):
         x_train, x_valid, x_test, y_train, y_valid, y_test = self.partition_logisticdata()
         nx,ny = self.normalization(x_train,y_train)
-        y = p[3] + p[0] / (1 + np.e**((p[2] - nx)/p[1]))
         MSE = 0
         for i in range(len(nx)):
             MSE += ((p[0] / (1 + np.e**((p[2] - nx[i])/p[1]))) + p[3] - ny[i])**2
@@ -176,7 +175,7 @@ class Data:
         #the optimal value I got was below, therefore, I put the value down
         y_pred = p[3] + p[0] / (1 + np.e**((p[2] - xn)/p[1]))
         ax.plot(x_train, y_pred*np.std(y_train) + np.mean(y_train), label="Model")
-        a = ax.legend()
+        ax.legend()
         FS=18   #FONT SIZE
         plt.xlabel('x', fontsize=FS)
         plt.ylabel('y', fontsize=FS)
