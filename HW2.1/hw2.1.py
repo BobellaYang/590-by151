@@ -125,7 +125,7 @@ def minimizer(f,xi, algo='GD', LR=0.01):
 	max_iter=5000		#MAX NUMBER OF ITERATION
 	tol=10**-10			#EXIT AFTER CHANGE IN F IS LESS THAN THIS 
 	NDIM=len(xi)		#DIMENSION OF OPTIIZATION PROBLEM
-
+	change = 0	
 	#OPTIMIZATION LOOP
 	while(iteration<=max_iter):
 
@@ -165,10 +165,16 @@ def minimizer(f,xi, algo='GD', LR=0.01):
 
 			# UPDATE GRADIENT VECTOR 
 			df_dx[i]=grad_i 
-			
+
+		momentum = 0.2
 		#TAKE A OPTIMIZER STEP
 		if(algo=="GD"):  xip1=xi-LR*df_dx 
-		if(algo=="MOM"): print("REQUESTED ALGORITHM NOT CODED"); exit()
+		elif(algo=="MOM"): 
+			newchange = LR*df_dx + momentum*change
+			xip1 = xi - newchange
+			change = newchange
+		else:
+			print("REQUESTED ALGORITHM NOT CODED"); exit()
 
 		#REPORT AND SAVE DATA FOR PLOTTING
 		if(iteration%1==0):
