@@ -43,13 +43,11 @@ model_type="linear";
 #The dataset is available from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/).
 #First download and import the dataset using pandas:
 
-url = 'http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data'
+url = 'mpg.csv'
 column_names = ['MPG', 'Cylinders', 'Displacement', 'Horsepower', 'Weight',
                 'Acceleration', 'Model Year', 'Origin']
 
-df = pd.read_csv(url, names=column_names,
-                          na_values='?', comment='\t',
-                          sep=' ', skipinitialspace=True)
+df = pd.read_csv(url)
 
 SBV.get_pd_info(df)
 
@@ -286,21 +284,3 @@ if(IPLOT):
     plot_2()
 
 
-
-# #------------------------
-# #DOUBLE CHECK PART-1 OF HW2.1
-# #------------------------
-
-# x=np.array([[3],[1],[4]])
-# y=np.array([[2,5,1]])
-
-# A=np.array([[4,5,2],[3,1,5],[6,4,3]])
-# B=np.array([[3,5],[5,2],[1,4]])
-# print(x.shape,y.shape,A.shape,B.shape)
-# print(np.matmul(x.T,x))
-# print(np.matmul(y,x))
-# print(np.matmul(x,y))
-# print(np.matmul(A,x))
-# print(np.matmul(A,B))
-# print(B.reshape(6,1))
-# print(B.reshape(1,6))
