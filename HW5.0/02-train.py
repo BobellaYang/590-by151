@@ -42,45 +42,9 @@ embed_dim    = 50        #DIMENSION OF EMBEDING SPACE (SIZE OF VECTOR FOR EACH W
 lr           = 0.001    #LEARNING RATE
 
 #read in the data
-
-files = os.listdir(os.getcwd()+"/data")
-
-
-#read in all three txt files with corresponding label
-f1 = open(os.getcwd()+"/data/"+files[1])
-text1 = f1.read()
-f1.close()
-file1 = np.array(sent_tokenize(text1))
-
-
-f2 = open(os.getcwd()+"/data/"+ files[2])
-text2 = f2.read()
-f2.close()
-file2 = np.array(sent_tokenize(text2))
-
-
-f3 = open(os.getcwd()+"/data/"+ files[3])
-text3 = f3.read()
-f3.close()
-file3 = np.array(sent_tokenize(text3))
-
-
-
-texts = []
-labels = []
-
-for i in range(len(file1)):
-    texts.append(file1[i])
-    labels.append(0)
-    
-for i in range(len(file2)):
-    texts.append(file2[i])
-    labels.append(1)
-
-for i in range(len(file3)):
-    texts.append(file3[i])
-    labels.append(2)
-
+df = pd.read_csv('clean_data.csv')
+texts = list(df.text)
+labels = list(df.label)
 
 tokenizer = Tokenizer(num_words=max_words)
 tokenizer.fit_on_texts(texts)

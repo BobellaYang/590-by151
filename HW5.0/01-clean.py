@@ -24,20 +24,18 @@ f1 = open(os.getcwd()+"/data/"+files[1])
 text1 = f1.read()
 f1.close()
 file1 = sent_tokenize(text1)
-label1 = ['1'] * len(file1)
+
 
 f2 = open(os.getcwd()+"/data/"+ files[2])
 text2 = f2.read()
 f2.close()
 file2 = sent_tokenize(text2)
-label2 = ['2'] * len(file2)
 
 
 f3 = open(os.getcwd()+"/data/"+ files[3])
 text3 = f3.read()
 f3.close()
 file3 = sent_tokenize(text3)
-label3 = ['3'] * len(file3)
 
 
 
@@ -46,15 +44,15 @@ labels = []
 
 for i in range(len(file1)):
     texts.append(file1[i])
-    labels.append([1])
+    labels.append(0)
     
 for i in range(len(file2)):
     texts.append(file2[i])
-    labels.append([2])
+    labels.append(1)
 
 for i in range(len(file3)):
     texts.append(file3[i])
-    labels.append([3])
+    labels.append(2)
 
 #make them into one dataframe
 df = pd.DataFrame(columns = ['text','label'])
